@@ -1,0 +1,2 @@
+class CardRarity < ApplicationRecord
+end
