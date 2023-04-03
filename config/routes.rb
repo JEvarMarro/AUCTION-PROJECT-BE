@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :card_conditions
   resources :auction_items
   resources :cards
   resources :serie_sets

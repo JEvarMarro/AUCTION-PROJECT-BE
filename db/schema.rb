@@ -16,12 +16,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_042357) do
 
   create_table "auction_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "card_id", null: false
+    t.uuid "card_condition_id", null: false
     t.float "current_price"
     t.float "minimum_bid"
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["card_condition_id"], name: "index_auction_items_on_card_condition_id"
     t.index ["card_id"], name: "index_auction_items_on_card_id"
+  end
+
+  create_table "card_conditions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "card_rarities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -68,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_042357) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "auction_items", "card_conditions"
   add_foreign_key "auction_items", "cards"
   add_foreign_key "cards", "card_rarities"
   add_foreign_key "cards", "card_types"

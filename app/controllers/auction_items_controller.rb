@@ -3,8 +3,8 @@ class AuctionItemsController < ApplicationController
 
   # GET /auction_items
   def index
-    @auction_items = AuctionItem.includes(card: [:card_type, :card_rarity, :serie, :serie_set])
-    render json: @auction_items, include: ['card.card_type', 'card.card_rarity', 'card.serie', 'card.serie_set']
+    @auction_items = AuctionItem.includes(:card_condition, card: [:card_type, :card_rarity, :serie, :serie_set])
+    render json: @auction_items, include: ['card.card_type', 'card.card_rarity', 'card.serie', 'card.serie_set', 'card_condition']
   end
 
   # GET /auction_items/1

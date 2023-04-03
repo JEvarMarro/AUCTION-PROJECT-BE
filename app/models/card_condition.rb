@@ -1,0 +1,2 @@
+class CardCondition < ApplicationRecord
+end
