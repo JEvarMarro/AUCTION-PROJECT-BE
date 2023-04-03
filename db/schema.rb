@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_02_030644) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_042357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auction_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "card_id", null: false
+    t.float "current_price"
+    t.float "minimum_bid"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_auction_items_on_card_id"
+  end
 
   create_table "card_rarities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -29,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_030644) do
   create_table "cards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "number"
     t.string "name"
+    t.string "image_url"
     t.uuid "card_type_id", null: false
     t.uuid "card_rarity_id", null: false
     t.uuid "serie_id", null: false
@@ -57,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_030644) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "auction_items", "cards"
   add_foreign_key "cards", "card_rarities"
   add_foreign_key "cards", "card_types"
   add_foreign_key "cards", "serie_sets"
