@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_042357) do
 
   create_table "serie_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.date "release_date"
     t.uuid "serie_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

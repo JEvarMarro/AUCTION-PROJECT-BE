@@ -9,7 +9,7 @@ class AuctionItemsController < ApplicationController
 
   # GET /auction_items/1
   def show
-    render json: @auction_item
+    render json: @auction_item, include: ['card.card_type', 'card.card_rarity', 'card.serie', 'card.serie_set', 'card_condition']
   end
 
   # POST /auction_items
@@ -45,6 +45,6 @@ class AuctionItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def auction_item_params
-      params.require(:auction_item).permit(:card_id, :current_price, :minimum_bid, :end_date)
+      params.require(:auction_item).permit(:card_id, :current_price, :minimum_bid, :end_date, :card_condition_id)
     end
 end

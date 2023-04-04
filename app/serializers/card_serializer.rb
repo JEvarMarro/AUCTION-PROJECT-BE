@@ -1,8 +1,9 @@
 class CardSerializer < ActiveModel::Serializer
 
-    attributes  :number,
+    attributes  :id,
+                :image_url,
                 :name,
-                :image_url
+                :number
 
     belongs_to :card_type
     belongs_to :card_rarity
