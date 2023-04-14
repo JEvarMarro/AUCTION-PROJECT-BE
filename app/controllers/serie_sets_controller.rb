@@ -3,8 +3,11 @@ class SerieSetsController < ApplicationController
 
   # GET /serie_sets
   def index
-    @serie_sets = SerieSet.all
-
+    if serie_id
+      @serie_sets = SerieSet.where(serie_id: serie_id)
+    else
+      @serie_sets = SerieSet.all
+    end
     render json: @serie_sets
   end
 
@@ -47,5 +50,9 @@ class SerieSetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def serie_set_params
       params.require(:serie_set).permit(:name, :description, :serie_id)
+    end
+
+    def serie_id
+      params[:serie_id]
     end
 end

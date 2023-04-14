@@ -1,10 +1,13 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show update destroy ]
 
-  # GET /cards
+   # GET /cards
   def index
-    @cards = Card.all
-
+    if serie_set_id
+      @cards = Card.where(serie_set_id: serie_set_id)
+    else
+      @cards = Card.all
+    end
     render json: @cards
   end
 
@@ -47,5 +50,9 @@ class CardsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def card_params
       params.require(:card).permit(:number, :name, :card_type_id, :card_rarity_id, :serie_id, :serie_set_id)
+    end
+
+    def serie_set_id
+      params[:serie_set_id]
     end
 end
