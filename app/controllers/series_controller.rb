@@ -3,8 +3,7 @@ class SeriesController < ApplicationController
 
   # GET /series
   def index
-    @series = Serie.all
-
+    @series = Serie.all.order(:release_date)
     render json: @series
   end
 
