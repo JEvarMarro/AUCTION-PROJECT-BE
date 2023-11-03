@@ -8,7 +8,11 @@ class CardsController < ApplicationController
     else
       @cards = Card.all
     end
-    render json: @cards
+    if name.present?
+      formatted_name = name.downcase.gsub(/\s+/, "")
+      @cards = @cards.where("REPLACE(LOWER(name), ' ', '') LIKE ?", "%#{formatted_name}%")
+    end
+    render json: { cards: @cards }
   end
 
   # GET /cards/1
@@ -54,5 +58,9 @@ class CardsController < ApplicationController
 
     def serie_set_id
       params[:serie_set_id]
+    end
+
+    def name
+      params[:name]
     end
 end

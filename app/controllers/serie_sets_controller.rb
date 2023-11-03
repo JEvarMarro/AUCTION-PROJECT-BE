@@ -8,7 +8,7 @@ class SerieSetsController < ApplicationController
     else
       @serie_sets = SerieSet.all
     end
-    render json: @serie_sets
+    render json: { serie_sets: @serie_sets }
   end
 
   # GET /serie_sets/1
