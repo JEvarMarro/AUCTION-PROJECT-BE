@@ -1,4 +1,5 @@
 class SeriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_series, only: %i[ show update destroy ]
 
   # GET /series

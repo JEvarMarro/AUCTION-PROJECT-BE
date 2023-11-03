@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_card, only: %i[ show update destroy ]
 
    # GET /cards
@@ -47,20 +48,20 @@ class CardsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_card
-      @card = Card.find(params[:id])
-    end
+  def set_card
+    @card = Card.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def card_params
-      params.require(:card).permit(:number, :name, :card_type_id, :card_rarity_id, :serie_id, :serie_set_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def card_params
+    params.require(:card).permit(:number, :name, :card_type_id, :card_rarity_id, :serie_id, :serie_set_id)
+  end
 
-    def serie_set_id
-      params[:serie_set_id]
-    end
+  def serie_set_id
+    params[:serie_set_id]
+  end
 
-    def name
-      params[:name]
-    end
+  def name
+    params[:name]
+  end
 end
