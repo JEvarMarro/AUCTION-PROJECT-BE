@@ -49,6 +49,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'devise'
+  gem 'devise-jwt'
+  gem 'jsonapi-serializer'
 end
 
 group :development do
