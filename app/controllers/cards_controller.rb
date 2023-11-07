@@ -13,7 +13,7 @@ class CardsController < ApplicationController
       formatted_name = name.downcase.gsub(/\s+/, "")
       @cards = @cards.where("REPLACE(LOWER(name), ' ', '') LIKE ?", "%#{formatted_name}%")
     end
-    render json: { cards: @cards }
+    render json: { cards: ActiveModelSerializers::SerializableResource.new(@cards, each_serializer: CardSerializer).as_json }
   end
 
   # GET /cards/1
