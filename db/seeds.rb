@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-# db/seeds.rb
-
 [
   { name: 'Grass' },
   { name: 'Fairy' },
@@ -60,24 +51,24 @@ end
 end
 
 [
-  { name: 'Base', serie_id: '226ca42e-8e62-4bba-ade4-307667f33203', release_date: Date.parse('1999-01-09'), image_url: 'https://den-media.pokellector.com/logos/Base-Set.logo.119.png' },
-  { name: 'Jungle', serie_id: '226ca42e-8e62-4bba-ade4-307667f33203', release_date: Date.parse('1999-06-16'), image_url: 'https://den-media.pokellector.com/logos/Jungle.logo.120.png' },
-  { name: 'Wizards of the Coast Promos', serie_id: '226ca42e-8e62-4bba-ade4-307667f33203', release_date: Date.parse('1999-07-01'), image_url: 'https://den-media.pokellector.com/logos/Wizards-of-the-Coast-Promos.logo.125.png' },
-  { name: 'Fossil', serie_id: '226ca42e-8e62-4bba-ade4-307667f33203', release_date: Date.parse('1999-10-10'), image_url: 'https://den-media.pokellector.com/logos/Fossil.logo.121.png' },
-  { name: 'Base Set 2', serie_id: '226ca42e-8e62-4bba-ade4-307667f33203', release_date: Date.parse('2000-02-24'), image_url: 'https://den-media.pokellector.com/logos/Base-Set-2.logo.122.png' },
-  { name: 'Team Rocket', serie_id: '226ca42e-8e62-4bba-ade4-307667f33203', release_date: Date.parse('2000-04-24'), image_url: 'https://den-media.pokellector.com/logos/Team-Rocket.logo.123.png' },
-  { name: 'Gym Heroes', serie_id: '26a89bc3-fa1c-499f-b732-c85fb9f5e98f', release_date: Date.parse('2000-08-14'), image_url: 'https://den-media.pokellector.com/logos/Gym-Heroes.logo.117.png' },
-  { name: 'Gym Challenge', serie_id: '26a89bc3-fa1c-499f-b732-c85fb9f5e98f', release_date: Date.parse('2000-10-16'), image_url: 'https://den-media.pokellector.com/logos/Gym-Challenge.logo.118.png' },
-  { name: 'Neo Genesis', serie_id: '691f5224-ea20-472f-ad63-725366feee7b', release_date: Date.parse('2000-12-16'), image_url: 'https://den-media.pokellector.com/logos/Neo-Genesis.logo.113.png' },
-  { name: 'Neo Discovery', serie_id: '691f5224-ea20-472f-ad63-725366feee7b', release_date: Date.parse('2001-06-01'), image_url: 'https://den-media.pokellector.com/logos/Neo-Discovery.logo.114.png' },
-  { name: 'Southern Islands', serie_id: '691f5224-ea20-472f-ad63-725366feee7b', release_date: Date.parse('2001-07-31'), image_url: 'https://den-media.pokellector.com/logos/Southern-Islands.logo.124.png' },
-  { name: 'Neo Revelation', serie_id: '691f5224-ea20-472f-ad63-725366feee7b', release_date: Date.parse('2001-09-21'), image_url: 'https://den-media.pokellector.com/logos/Neo-Revelation.logo.115.png' },
-  { name: 'Neo Destiny', serie_id: '691f5224-ea20-472f-ad63-725366feee7b', release_date: Date.parse('2002-02-28'), image_url: 'https://den-media.pokellector.com/logos/Neo-Destiny.logo.116.png' },
-  { name: 'Legendary Collection', serie_id: '2af01594-4b5b-4490-854f-4d40a08321f0', release_date: Date.parse('2002-05-24'), image_url: 'https://den-media.pokellector.com/logos/Legendary-Collection.logo.112.png' },
-  { name: 'Expedition', serie_id: 'da0c6be0-ef85-44f1-81c2-54558fa9b5c4', release_date: Date.parse('2002-09-15'), image_url: 'https://den-media.pokellector.com/logos/Expedition.logo.109.png' },
-  { name: 'Best of Game', serie_id: 'da0c6be0-ef85-44f1-81c2-54558fa9b5c4', release_date: Date.parse('2002-12-01'), image_url: 'https://den-media.pokellector.com/logos/Best-of-Game.logo.196.png' },
-  { name: 'Aquapolis', serie_id: 'da0c6be0-ef85-44f1-81c2-54558fa9b5c4', release_date: Date.parse('2003-01-15'), image_url: 'https://den-media.pokellector.com/logos/Aquapolis.logo.110.png' },
-  { name: 'Skyridge', serie_id: 'da0c6be0-ef85-44f1-81c2-54558fa9b5c4', release_date: Date.parse('2003-05-12'), image_url: 'https://den-media.pokellector.com/logos/Skyridge.logo.111.png' },
+  { name: 'Base', serie_name: 'Base Set', release_date: Date.parse('1999-01-09'), image_url: 'https://den-media.pokellector.com/logos/Base-Set.logo.119.png' },
+  { name: 'Jungle', serie_name: 'Base Set', release_date: Date.parse('1999-06-16'), image_url: 'https://den-media.pokellector.com/logos/Jungle.logo.120.png' },
+  { name: 'Wizards of the Coast Promos', serie_name: 'Base Set', release_date: Date.parse('1999-07-01'), image_url: 'https://den-media.pokellector.com/logos/Wizards-of-the-Coast-Promos.logo.125.png' },
+  { name: 'Fossil', serie_name: 'Base Set', release_date: Date.parse('1999-10-10'), image_url: 'https://den-media.pokellector.com/logos/Fossil.logo.121.png' },
+  { name: 'Base Set 2', serie_name: 'Base Set', release_date: Date.parse('2000-02-24'), image_url: 'https://den-media.pokellector.com/logos/Base-Set-2.logo.122.png' },
+  { name: 'Team Rocket', serie_name: 'Base Set', release_date: Date.parse('2000-04-24'), image_url: 'https://den-media.pokellector.com/logos/Team-Rocket.logo.123.png' },
+  { name: 'Gym Heroes', serie_name: 'Gym Heroes', release_date: Date.parse('2000-08-14'), image_url: 'https://den-media.pokellector.com/logos/Gym-Heroes.logo.117.png' },
+  { name: 'Gym Challenge', serie_name: 'Gym Heroes', release_date: Date.parse('2000-10-16'), image_url: 'https://den-media.pokellector.com/logos/Gym-Challenge.logo.118.png' },
+  { name: 'Neo Genesis', serie_name: 'Neo Genesis', release_date: Date.parse('2000-12-16'), image_url: 'https://den-media.pokellector.com/logos/Neo-Genesis.logo.113.png' },
+  { name: 'Neo Discovery', serie_name: 'Neo Genesis', release_date: Date.parse('2001-06-01'), image_url: 'https://den-media.pokellector.com/logos/Neo-Discovery.logo.114.png' },
+  { name: 'Southern Islands', serie_name: 'Neo Genesis', release_date: Date.parse('2001-07-31'), image_url: 'https://den-media.pokellector.com/logos/Southern-Islands.logo.124.png' },
+  { name: 'Neo Revelation', serie_name: 'Neo Genesis', release_date: Date.parse('2001-09-21'), image_url: 'https://den-media.pokellector.com/logos/Neo-Revelation.logo.115.png' },
+  { name: 'Neo Destiny', serie_name: 'Neo Genesis', release_date: Date.parse('2002-02-28'), image_url: 'https://den-media.pokellector.com/logos/Neo-Destiny.logo.116.png' },
+  { name: 'Legendary Collection', serie_name: 'Legendary Collection', release_date: Date.parse('2002-05-24'), image_url: 'https://den-media.pokellector.com/logos/Legendary-Collection.logo.112.png' },
+  { name: 'Expedition', serie_name: 'e-Card', release_date: Date.parse('2002-09-15'), image_url: 'https://den-media.pokellector.com/logos/Expedition.logo.109.png' },
+  { name: 'Best of Game', serie_name: 'e-Card', release_date: Date.parse('2002-12-01'), image_url: 'https://den-media.pokellector.com/logos/Best-of-Game.logo.196.png' },
+  { name: 'Aquapolis', serie_name: 'e-Card', release_date: Date.parse('2003-01-15'), image_url: 'https://den-media.pokellector.com/logos/Aquapolis.logo.110.png' },
+  { name: 'Skyridge', serie_name: 'e-Card', release_date: Date.parse('2003-05-12'), image_url: 'https://den-media.pokellector.com/logos/Skyridge.logo.111.png' },
 ].each do |set_attrs|
   SerieSet.find_or_create_by(name: set_attrs[:name]) do |serie_set|
     serie_set.serie_id = Serie.find_by(name: set_attrs[:serie_name]).id

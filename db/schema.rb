@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_182621) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_07_192222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_182621) do
     t.index ["serie_set_id"], name: "index_cards_on_serie_set_id"
   end
 
+  create_table "collections", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_collections_on_card_id"
+    t.index ["user_id", "card_id"], name: "index_collections_on_user_id_and_card_id", unique: true
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
   create_table "serie_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.date "release_date", null: false
@@ -77,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_182621) do
     t.string "image_url"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -97,5 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_182621) do
   add_foreign_key "cards", "card_rarities"
   add_foreign_key "cards", "card_types"
   add_foreign_key "cards", "serie_sets"
+  add_foreign_key "collections", "cards"
+  add_foreign_key "collections", "users"
   add_foreign_key "serie_sets", "series", column: "serie_id"
 end

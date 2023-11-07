@@ -25,4 +25,6 @@ Rails.application.routes.draw do
     post '/login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
   end
+  post 'add_card/:card_id', to: 'users#add_card', as: 'add_card'
+  delete 'remove_card/:card_id', to: 'users#remove_card', as: 'remove_card'
 end

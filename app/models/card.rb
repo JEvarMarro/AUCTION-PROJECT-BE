@@ -5,4 +5,6 @@ class Card < ApplicationRecord
   belongs_to :card_rarity
   belongs_to :serie_set
 
+  has_many :collections
+  has_many :users, through: :collections
 end
