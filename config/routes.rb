@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   end
   post 'add_card/:card_id', to: 'users#add_card', as: 'add_card'
   delete 'remove_card/:card_id', to: 'users#remove_card', as: 'remove_card'
+  get 'collection', to: 'users#collection', as: 'collection'
+  delete 'remove_set', to:'users#remove_set', as: 'remove_set'
+  post 'add_set', to:'users#add_set', as: 'add_set'
 end
