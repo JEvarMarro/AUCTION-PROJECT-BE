@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def add_card
     card = Card.find_by(id: params[:card_id])
-
     if card.nil?
       render json: { error: 'La carta no existe' }, status: :not_found
     elsif current_user.cards.include?(card)
@@ -28,24 +27,15 @@ class UsersController < ApplicationController
   end
 
   def collection
-    user = User.find user_id
-    @collection = user.collections
-    render json: {
-      collection: ActiveModelSerializers::SerializableResource.new(
-        @collection, each_serializer: CollectionSerializer, include:
-          ['card.card_type', 'card.card_rarity']
-      ).as_json
-    }
+    render json: series
   end
 
-  
   def add_set
     set = SerieSet.find serie_set_id
     existing_card_ids = current_user.cards.pluck(:id)
     new_card_ids = set.cards.where.not(id: existing_card_ids).pluck(:id)
     current_user.card_ids += new_card_ids
-    @collection = current_user.collections
-    render json: { collection: ActiveModelSerializers::SerializableResource.new(@collection, each_serializer: CollectionSerializer).as_json }
+    render json: { collection: series }
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'El set no existe' }, status: :not_found
   end
@@ -54,8 +44,7 @@ class UsersController < ApplicationController
     set = SerieSet.find serie_set_id
     new_cards = current_user.cards.where.not(serie_set_id: set.id)
     current_user.update(cards: new_cards)
-    @collection = current_user.collections
-    render json: { collection: ActiveModelSerializers::SerializableResource.new(@collection, each_serializer: CollectionSerializer).as_json }
+    render json: { collection: series }
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'El set no existe' }, status: :not_found
   end
@@ -76,5 +65,39 @@ class UsersController < ApplicationController
 
   def serie_set_id
     user_params[:serie_set_id]
+  end
+
+  def user
+    User.find user_id
+  end
+
+  def user_cards
+    user.cards
+  end
+
+  def series
+    grouped_cards = user_cards.includes(serie_set: :serie).group_by { |card| card.serie_set.serie_id }
+    series = grouped_cards.map do |serie_id, cards|
+      serie = cards.first.serie_set.serie
+      serie_sets = cards.group_by(&:serie_set_id).map do |serie_set_id, cards|
+        {
+          serie_set_id: serie_set_id,
+          cards: cards.map do |card|
+            {
+              id: card.id,
+              name: card.name,
+              image_url: card.image_url,
+              number: card.number
+            }
+          end
+        }
+      end
+      {
+        serie_id: serie.id,
+        serie_name: serie.name,
+        serie_sets: serie_sets
+      }
+    end
+    { collection: series }
   end
 end

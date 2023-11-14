@@ -717,11 +717,11 @@ serie_sets = SerieSet.all.map { |set| [set.name, set.id] }.to_h
 { name: "Metal Energy", type: "Energy", rarity: "Common", number: 159, set: "Crown Zenith", image_url: "https://www.digitaltq.com/images/tcg/crownzenith/159.png" },
 { name: "Pikachu", type: "Lightning", rarity: "Common", number: 160, set: "Crown Zenith", image_url: "https://www.digitaltq.com/images/tcg/crownzenith/160.png" }
 ].each do |card_attrs|
-  Card.find_or_create_by!(name: card_attrs[:name], serie_set_id: serie_sets[card_attrs[:set]]) do |card|
+  Card.find_or_create_by!(number: card_attrs[:number], serie_set_id: serie_sets[card_attrs[:set]]) do |card|
     card.card_type_id = card_types[card_attrs[:type]]
     card.card_rarity_id = card_rarities[card_attrs[:rarity]]
     card.image_url = card_attrs[:image_url]
-    card.number = card_attrs[:number]
+    card.name = card_attrs[:name]
     card.image_url = card_attrs[:image_url]
   end
 end
