@@ -80,14 +80,21 @@ class UsersController < ApplicationController
     series = grouped_cards.map do |serie_id, cards|
       serie = cards.first.serie_set.serie
       serie_sets = cards.group_by(&:serie_set_id).map do |serie_set_id, cards|
+        serie_set = cards.first.serie_set
         {
-          serie_set_id: serie_set_id,
+          serie_set_id: serie_set.id,
+          serie_set_set_id: serie.id,
+          serie_set_name: serie_set.name,
+          serie_set_image_url: serie_set.image_url,
           cards: cards.map do |card|
             {
               id: card.id,
               name: card.name,
               image_url: card.image_url,
-              number: card.number
+              number: card.number,
+              rarity: card.card_rarity,
+              serie_id: serie.id,
+              set_id: serie_set.id
             }
           end
         }
@@ -95,6 +102,7 @@ class UsersController < ApplicationController
       {
         serie_id: serie.id,
         serie_name: serie.name,
+        serie_image_url: serie.image_url,
         serie_sets: serie_sets
       }
     end
